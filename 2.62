@@ -1,0 +1,26 @@
+// this is 2.62
+// ">>" operator have two ways like 
+// one way (arithmetic right shift??)
+// [100000000] >> 1     =>      [110000000]
+// two way (logic rigth shift)
+// [100000000] >> 1     =>      [010000000]
+
+// 2.62 ask us to return 1 if "int" on 1th way ,others return 0.
+
+bool int_shifts_are_arithmetic() {
+  return !~(1<<(sizeof(int)<<3)-1)>>(sizeof(int)<<3)-1;
+}
+
+
+
+// Test
+#include <stdio.h>
+int main() {
+    int a = 1<<(sizeof(int)<<3)-1;
+    printf("%d\n",a);
+    int b = a >>(sizeof(int)<<3)-1;
+    printf("%d\n",!~b);
+    unsigned c = (unsigned)a >>(sizeof(int)<<3)-1;
+    printf("%d\n",!~c);
+    return 0;
+}
