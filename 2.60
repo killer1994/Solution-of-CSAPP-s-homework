@@ -1,0 +1,20 @@
+// This is my solutoin of 2.60
+
+unsigned replace_byte (unsigned x, int i, unsigned char b){
+    unsigned z ;
+    z = x & (((1<<sizeof(x)*8)-1) - ((1<<(i+1)*8)-1) + ((1<<(i)*8)-1));
+    z += b<<i*8;
+    return z;
+}
+
+// Test
+int main() {
+    unsigned x = 0x12345678;
+    unsigned char y = 0xAB;
+    printf("0x%X\n",x);
+    printf("------Test1------------\n");
+    printf("0x%X\n",replace_byte(x,2,y));
+    printf("------Test2------------\n");
+    printf("0x%X\n",replace_byte(x,0,y));
+    return 0;
+}
