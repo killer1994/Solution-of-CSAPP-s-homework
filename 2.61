@@ -1,0 +1,22 @@
+// this is 2.61
+// tips: cant use "==","!="
+// first we should know how to show like "0xffffffff"
+// like "int" shows (1<<((sizeof(int)<<3)))-1)
+// so,
+
+A. !~(x & (1<<((sizeof(int)<<3)))-1)
+
+B. !~(~x & (1<<((sizeof(int)<<3)))-1)
+
+// first we should get the lowwest byte compare with 0xff
+C. 
+
+// first we should get the most significant byte from x (the book show us)
+int get_mgb(int x) {
+  int shift_val = (sizeof(int)-1)<<3;
+  int xright = x >> shift_val;
+  return 0xFF & xright;
+}
+D. get_mbg(x)
+
+to be continue...
