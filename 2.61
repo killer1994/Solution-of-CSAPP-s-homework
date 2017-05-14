@@ -9,7 +9,9 @@ A. !~(x & (1<<((sizeof(int)<<3)))-1)
 B. !~(~x & (1<<((sizeof(int)<<3)))-1)
 
 // first we should get the lowwest byte compare with 0xff
-C. 
+C. !(char)~(a & 0xff)
+// dont use "(char)", we can use like this
+C. !~(0xffffff00 + (a & 0xff))
 
 // first we should get the most significant byte from x (the book show us)
 int get_mgb(int x) {
@@ -17,6 +19,5 @@ int get_mgb(int x) {
   int xright = x >> shift_val;
   return 0xFF & xright;
 }
-D. get_mbg(x)
-
-to be continue...
+D. !(char)~(get_mgb(~x))
+//D also can dont use "(char)" like C.
