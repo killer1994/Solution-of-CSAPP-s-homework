@@ -4,3 +4,23 @@
 // +- pow(2,w)
 
 to be continue.
+
+
+// Test
+#include <stdio.h>
+unsigned srl(unsigned x,int k) {
+    unsigned xsra = (int) x >> k;
+    //return ((1<<(sizeof(int)*8-1))-1)
+    return x & (1<<(sizeof(int)*8)-1);
+    return xsra;
+}
+int sra(int x,int k) {
+    int xsrl = (unsigned) x >> k;
+}
+int main() {
+    unsigned ux = 0xa0000000;
+    int intx = 0x80000000;
+    printf("%x,%d\n",srl(ux,3),sizeof(ux)*8);
+    printf("%d\n",sra(intx,3));
+    return 0;
+}
