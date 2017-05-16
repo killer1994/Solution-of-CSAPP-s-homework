@@ -8,19 +8,30 @@ to be continue.
 
 // Test
 #include <stdio.h>
+#include <limits.h>
 unsigned srl(unsigned x,int k) {
     unsigned xsra = (int) x >> k;
     //return ((1<<(sizeof(int)*8-1))-1)
-    return x & (1<<(sizeof(int)*8)-1);
-    return xsra;
+    return (!~( ( x & (1<<(sizeof(int)*8)-1) ) + 0x7fffffff))*(1<<sizeof(int)*8) + xsra;
+}
+unsigned really_srl(unsigned x, int k) {
+    return (unsigned)x>>k;
 }
 int sra(int x,int k) {
     int xsrl = (unsigned) x >> k;
+    //return  (!~( ( x & (1<<(sizeof(int)*8)-1) ) + 0x7fffffff))*(1<<sizeof(int)*8);
+    return  xsrl-(!~( ( x & (1<<(sizeof(int)*8)-1) ) + 0x7fffffff))*(1<<sizeof(int)*8) ;
+}
+int really_sra(int x,int k) {
+    return x>>k;
 }
 int main() {
-    unsigned ux = 0xa0000000;
+    unsigned ux = 0x80000000;
     int intx = 0x80000000;
-    printf("%x,%d\n",srl(ux,3),sizeof(ux)*8);
-    printf("%d\n",sra(intx,3));
+    int k = 3;
+    printf("%u\n",srl(ux,k));
+    printf("%u\n",really_srl(ux,k));
+    printf("%d\n",sra(intx,k));
+    printf("%d\n",really_sra(intx,k));
     return 0;
 }
