@@ -1,0 +1,6 @@
+// This is for 2.64
+// 2863311530 = 2^1 + 2^3 + ... + 2^31
+
+int any_odd_one(unsigned x){
+    return !!(x & 2863311530);
+}
